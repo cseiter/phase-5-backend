@@ -42,16 +42,14 @@ ActiveRecord::Schema.define(version: 2021_09_27_170716) do
   create_table "tickets", force: :cascade do |t|
     t.string "ticket_title"
     t.string "ticket_details"
-    t.string "ticket_number"
-    t.string "integer"
+    t.integer "ticket_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "user_name"
-    t.string "ticket_owner"
-    t.string "boolean"
+    t.boolean "ticket_owner"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
