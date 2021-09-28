@@ -19,6 +19,10 @@ ActiveRecord::Schema.define(version: 2021_09_27_170716) do
     t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "tickets_id"
+    t.bigint "users_id"
+    t.index ["tickets_id"], name: "index_comments_on_tickets_id"
+    t.index ["users_id"], name: "index_comments_on_users_id"
   end
 
   create_table "devices", force: :cascade do |t|
@@ -45,6 +49,14 @@ ActiveRecord::Schema.define(version: 2021_09_27_170716) do
     t.integer "ticket_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "users_id"
+    t.bigint "devices_id"
+    t.bigint "stations_id"
+    t.bigint "status_id"
+    t.index ["devices_id"], name: "index_tickets_on_devices_id"
+    t.index ["stations_id"], name: "index_tickets_on_stations_id"
+    t.index ["status_id"], name: "index_tickets_on_status_id"
+    t.index ["users_id"], name: "index_tickets_on_users_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,4 +66,10 @@ ActiveRecord::Schema.define(version: 2021_09_27_170716) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "comments", "tickets", column: "tickets_id"
+  add_foreign_key "comments", "users", column: "users_id"
+  add_foreign_key "tickets", "devices", column: "devices_id"
+  add_foreign_key "tickets", "stations", column: "stations_id"
+  add_foreign_key "tickets", "statuses"
+  add_foreign_key "tickets", "users", column: "users_id"
 end
