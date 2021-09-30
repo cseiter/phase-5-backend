@@ -10,8 +10,8 @@ class CommentsController < ApplicationController
     end
 
     def create
-        comment = Comment.create!(item_params), status: :created
-        render json: comment
+        comment = Comment.create!(comment_params)
+        render json: comment, status: :created
     end
 
     def destroy
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
         end
     end       
 
-    def item_params
+    def comment_params
         params.permit(:comment, :tickets_id, :users_id)
     end
 end

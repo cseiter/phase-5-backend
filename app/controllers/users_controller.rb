@@ -11,21 +11,21 @@ class UsersController < ApplicationController
     end
 
     def create
-        users = User.create!(item_params), status: :created
-        render json: users
+        user = User.create!(user_params)
+        render json: user, status: :created
     end
 
     def destroy
-        users = User.find_by(id: params[:id])
-        if users
-          users.destroy
+        user = User.find_by(id: params[:id])
+        if user
+          user.destroy
           head :no_content
         else
           render json: { error: "User not found" }, status: :not_found
         end
     end       
 
-    def item_params
+    def user_params
         params.permit(:user_name, :ticket_owner)
     end
 end
