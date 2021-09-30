@@ -10,7 +10,7 @@ class DevicesController < ApplicationController
     end
 
     def create
-        device = Device.create!(status_params)
+        device = Device.create!(device_params)
         render json: device, status: :created
     end
 
@@ -24,7 +24,7 @@ class DevicesController < ApplicationController
         end
     end       
 
-    def status_params
+    def device_params
         params.permit(:device_type)
     end
 end
