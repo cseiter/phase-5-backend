@@ -3,4 +3,28 @@ class DevicesController < ApplicationController
         devices = Device.all
         render json: devices
     end
+
+    def show
+        devices = Device.find(params[:id])
+        render json: devices
+    end
+
+    def create
+        device = Device.create!(item_params), status: :created
+        render json: device
+    end
+
+    def destroy
+        device = Device.find_by(id: params[:id])
+        if device
+          device.destroy
+          head :no_content
+        else
+          render json: { error: "Device not found" }, status: :not_found
+        end
+    end       
+
+    def item_params
+        params.permit(:device_type)
+    end
 end
