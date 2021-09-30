@@ -11,8 +11,8 @@ class StationsController < ApplicationController
     end
 
     def create
-        stations = Station.create!(item_params), status: :created
-        render json: stations
+        station = Station.create!(station_params)
+        render json: station, status: :created
     end
 
     def destroy
@@ -25,7 +25,7 @@ class StationsController < ApplicationController
         end
     end       
 
-    def item_params
+    def station_params
         params.permit(:station_name)
     end
 end
