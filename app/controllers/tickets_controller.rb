@@ -7,7 +7,8 @@ class TicketsController < ApplicationController
 
     def show
         tickets = Ticket.find(params[:id])
-        render json: tickets, include: :comments
+        render json: tickets
+        #render json: tickets, include: :comments
     end
 
     def create
