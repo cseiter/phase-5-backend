@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
     #belongs_to :user
-    belongs_to :ticket, dependent: :destroy
+    belongs_to :tickets, dependent: :destroy
     has_many :users, dependent: :destroy
 #    has_many :tickets, dependent: :destroy
 end
